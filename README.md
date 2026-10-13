@@ -85,6 +85,3 @@ pytest -q
 
 The included tests cover deterministic processing helpers and request validation. Add integration tests with MongoDB and Redis for ownership, 429 enforcement, PATCH/worker races, cache behavior, and crosswalk uniqueness before treating this as production-ready.
 
-## Known limitations / next improvements
-
-This is a take-home starter, not a hardened production system. The Redis list is at-most-once after `BLPOP`: a worker crash after pop can lose a job. For production, use Redis Streams consumer groups or a durable broker with acknowledgements, leases, retries, and dead-lettering. Also add authenticated identity instead of trusting `user_id` query/body values, optimistic concurrency with a dedicated version counter for PATCH races, robust reservation cleanup/reconciliation, and end-to-end integration tests.
